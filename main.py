@@ -58,8 +58,8 @@ headers = {
 
 
 for pin in combs:
-    print("If Its Not Printing Anything You May Be Rate Limtied, Its Recommended To Have 300-500 Seconds As Delay To Not Be Rate Limited, If You Was Rate Limited Before You Opend The Program Open It Agian In 5-20 Minutes")
-    print("At Maximum It Can Take 833 Hours Or 34 Days Or 50,000 Minutes (At Recomended Delay)")
+    print("If Its Not Printing Anything You May Be Rate Limtied, Its Recomended To Have 300-500 Seconds As Delay To Not Be Rate Limited, If You Was Rate Limited Before You Opend The Program Open It Agian In 5-20 Minutes")
+    print("At Maximum It Can Take 833 Hours Or 34 Days Or 50,000 Minutes (At Recommended Delay)")
     try:
         while True:
             json = {
