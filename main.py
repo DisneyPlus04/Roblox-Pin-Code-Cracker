@@ -21,6 +21,7 @@ except:
     print015("Missing Required Modules, Press Enter To Download (May Not Always Work)")
     input("")
     try:
+        import os
         os.system("pip install colorama requests")
     except:
         pass
@@ -44,8 +45,7 @@ except:
 
 try:
     import os
-    from os import system
-    system("title " + "Roblox Pin Code Cracker,   Made By blob#0005,   Github: github.com/blob0005")
+    os.system("title " + "Roblox Pin Code Cracker,   Made By blob#0005,   Github: github.com/blob0005")
 except:
     pass
 import time
@@ -129,4 +129,4 @@ for pin in combs:
                 break
     except:
         sys.stdout.write(colorama.Fore.RED + "> ")
-        print("Unkown Error, Cookie May Expired")
+        print("Unknown Error, Cookie May Expired")
